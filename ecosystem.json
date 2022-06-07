@@ -11,11 +11,11 @@
 
   "deploy": {
     "staging": {
-      "key": "/Users/dennisilyeechev/.ssh/epicure12345",
+      "key": "/Users/dennisilyeechev/.ssh/epicure12345.pem",
 
       "user": "ubuntu",
 
-      "host": ["http://ec2-35-173-248-3.compute-1.amazonaws.com"],
+      "host": ["ec2-35-173-248-3.compute-1.amazonaws.com"],
 
       "ref": "origin/main",
 
@@ -25,7 +25,7 @@
 
       "ssh_options": "StrictHostKeyChecking=no",
 
-      "post-deploy": "mkdir -p logs && npm i && pm2 reload ecosystem.json --env staging",
+      "post-deploy": "mkdir -p logs && npm i & pm2 reload ecosystem.json --env staging",
 
       "pre-deploy-local": "echo 'Deploying code to servers'",
 
