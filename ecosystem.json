@@ -3,7 +3,7 @@
     {
       "name": "epicure",
 
-      "script": "./dist/src/server.js",
+      "script": "./dist/server.js",
 
       "env": {}
     }
