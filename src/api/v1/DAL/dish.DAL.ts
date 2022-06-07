@@ -5,7 +5,7 @@ import { DishModel } from "../../../db/models/dish/dish.model";
 import { ErrorMsgs } from "../entities/Errors/ErrorMsgs";
 
 // sequelize
-import db from "../../../../models";
+// import db from "../../../../models";
 
 export class DishDAL extends AbsDAL {
   public static readonly Dish_COLLECTION = "dish";

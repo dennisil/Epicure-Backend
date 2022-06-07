@@ -1,4 +1,3 @@
-import Appsql from "./appsql";
 import App from "./app";
 require("dotenv").config();
 

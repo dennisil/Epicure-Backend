@@ -6,7 +6,7 @@ import { ChefModel } from "../../../db/models/chef/chef.model";
 import { ErrorMsgs } from "../entities/Errors/ErrorMsgs";
 
 // sequelize
-import db from "../../../../models";
+// import db from "../../../../models";
 export class ChefDAL extends AbsDAL {
   public static readonly CHEF_COLLECTION = "chef";
 

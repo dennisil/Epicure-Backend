@@ -3,7 +3,7 @@ import { ObjectId } from "mongodb";
 import * as _ from "lodash";
 import { ErrorMsgs } from "../entities/Errors/ErrorMsgs";
 import { UserModel } from "../../../db/models/user/user.model";
-import db from "../../../../models";
+// import db from "../../../../models";
 
 export class UserDAL extends AbsDAL {
   public static readonly Dish_COLLECTION = "user";
@@ -59,7 +59,7 @@ export class UserDAL extends AbsDAL {
   }
   public async delete(id: any): Promise<any> {
     try {
-      let doc: any = await db.user.destroy({ where: { _id: id } });
+      let doc: any = await super.delete(id)
       //   console.log("Inside Dal DOC:", doc);
       return doc;
     } catch (error: any) {

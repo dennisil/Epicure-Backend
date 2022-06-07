@@ -4,7 +4,7 @@ import * as _ from "lodash";
 import { RestaurantModel } from "../../../db/models/restaurant/restaurant.model";
 import { ErrorMsgs } from "../entities/Errors/ErrorMsgs";
 // sequlize
-import db from "../../../../models";
+// import db from "../../../../models";
 
 export class RestaurantDAL extends AbsDAL {
   public static readonly RESTAURANT_COLLECTION = "restaurant";

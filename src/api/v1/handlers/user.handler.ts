@@ -3,7 +3,7 @@ import { UserModel } from "../../../db/models/user/user.model";
 import * as _ from "lodash";
 import { ObjectId } from "mongoose";
 import { UserDAL } from "../DAL/user.DAL";
-import db from "../../../../models";
+// import db from "../../../../models";
 
 export class UserHandler extends AbsRequestHandler {
   private userDAL = new UserDAL();
@@ -38,7 +38,7 @@ export class UserHandler extends AbsRequestHandler {
    */
   public async addUser(userToAdd: any) {
     console.log(userToAdd);
-    const user = await db.user.create(userToAdd);
+    const user = await UserModel.create(userToAdd);
     console.log("dish", user);
     return user;
   }
@@ -46,7 +46,7 @@ export class UserHandler extends AbsRequestHandler {
   public async login(credentials: { userName: string; password: string }) {
     let { userName, password } = credentials;
     if (!password || !userName) return;
-    const user = await db.user.findOne({ where: { userName: userName } });
+    const user = await UserModel.findOne( { userName: userName } );
     console.log(user);
     return user;
   }
