@@ -26,3 +26,4 @@ chefSchema.set("toJSON", {
     },
 });
 exports.ChefModel = (0, mongoose_1.model)("chef", chefSchema);
+//# sourceMappingURL=chef.model.js.map

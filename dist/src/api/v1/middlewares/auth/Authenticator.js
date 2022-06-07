@@ -36,3 +36,4 @@ class Authenticator {
     }
 }
 exports.Authenticator = Authenticator;
+//# sourceMappingURL=Authenticator.js.map

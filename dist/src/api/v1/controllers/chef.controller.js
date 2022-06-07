@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -31,74 +22,63 @@ class ChefController extends AbsController_1.default {
         this.router.delete("/:id", this.deleteChef.bind(this));
     }
     // ----------------------------------------- SCHOOLS MANGEMENT CONTROLLERS -----------------------------------------------
-    getAllChefs(req, res, next) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const queryParams = this._buildCriteria(req.query);
-                const handler = new chef_handler_1.ChefHandler();
-                const chefs = yield handler.getAllChefs(queryParams);
-                res.json(chefs);
-            }
-            catch (err) {
-                res.status(400).send(err);
-            }
-        });
+    async getAllChefs(req, res, next) {
+        try {
+            const queryParams = this._buildCriteria(req.query);
+            const handler = new chef_handler_1.ChefHandler();
+            const chefs = await handler.getAllChefs(queryParams);
+            res.json(chefs);
+        }
+        catch (err) {
+            res.status(400).send(err);
+        }
     }
-    getChefById(req, res, next) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const handler = new chef_handler_1.ChefHandler();
-                const chefId = req.params.id;
-                const chef = yield handler.getChefById(chefId);
-                res.json(chef);
-            }
-            catch (err) {
-                res.status(400).send(err);
-            }
-        });
+    async getChefById(req, res, next) {
+        try {
+            const handler = new chef_handler_1.ChefHandler();
+            const chefId = req.params.id;
+            const chef = await handler.getChefById(chefId);
+            res.json(chef);
+        }
+        catch (err) {
+            res.status(400).send(err);
+        }
     }
-    addChef(req, res, next) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const handler = new chef_handler_1.ChefHandler();
-                const chef = yield handler.addChef(req.body);
-                console.log(chef);
-                res.json(chef);
-            }
-            catch (err) {
-                res.status(400).send(err);
-            }
-        });
+    async addChef(req, res, next) {
+        try {
+            const handler = new chef_handler_1.ChefHandler();
+            const chef = await handler.addChef(req.body);
+            console.log(chef);
+            res.json(chef);
+        }
+        catch (err) {
+            res.status(400).send(err);
+        }
     }
-    updateChef(req, res, next) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const handler = new chef_handler_1.ChefHandler();
-                const chefId = req.params.id;
-                const chefData = req.body.chefData;
-                const updateChef = yield handler.updateChef(chefId, chefData);
-                res.json(updateChef);
-            }
-            catch (err) {
-                res.status(400).send(err);
-            }
-        });
+    async updateChef(req, res, next) {
+        try {
+            const handler = new chef_handler_1.ChefHandler();
+            const chefId = req.params.id;
+            const chefData = req.body.chefData;
+            const updateChef = await handler.updateChef(chefId, chefData);
+            res.json(updateChef);
+        }
+        catch (err) {
+            res.status(400).send(err);
+        }
     }
-    filterSchools(req, res, next) {
-        return __awaiter(this, void 0, void 0, function* () { });
-    }
-    deleteChef(req, res, next) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const handler = new chef_handler_1.ChefHandler();
-                const chefId = req.params.id;
-                const deleted = yield handler.deleteChef(chefId);
-                res.json(deleted);
-            }
-            catch (err) {
-                res.status(400).send(err);
-            }
-        });
+    async filterSchools(req, res, next) { }
+    async deleteChef(req, res, next) {
+        try {
+            const handler = new chef_handler_1.ChefHandler();
+            const chefId = req.params.id;
+            const deleted = await handler.deleteChef(chefId);
+            res.json(deleted);
+        }
+        catch (err) {
+            res.status(400).send(err);
+        }
     }
 }
 exports.ChefController = ChefController;
+//# sourceMappingURL=chef.controller.js.map

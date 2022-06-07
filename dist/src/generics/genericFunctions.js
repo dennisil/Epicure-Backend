@@ -8,3 +8,4 @@ function cleanObject(doc) {
     return obj;
 }
 exports.cleanObject = cleanObject;
+//# sourceMappingURL=genericFunctions.js.map

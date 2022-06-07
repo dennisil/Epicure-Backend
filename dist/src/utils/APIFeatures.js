@@ -46,3 +46,4 @@ class APIFeatures {
 }
 exports.APIFeatures = APIFeatures;
 module.exports = APIFeatures;
+//# sourceMappingURL=APIFeatures.js.map

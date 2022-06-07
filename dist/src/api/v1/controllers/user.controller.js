@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -34,91 +25,76 @@ class UserController extends AbsController_1.default {
         this.router.delete("/:id", this.deleteUser.bind(this));
     }
     // ----------------------------------------- SCHOOLS MANGEMENT CONTROLLERS -----------------------------------------------
-    getAllUsers(req, res, next) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const queryParams = this._buildCriteria(req.query);
-                const handler = new user_handler_1.UserHandler();
-                const dishes = yield handler.getAllUsers(queryParams);
-                res.json(dishes);
-            }
-            catch (err) {
-                res.status(400).send(err);
-            }
-        });
-    }
-    login(req, res, next) {
-        return __awaiter(this, void 0, void 0, function* () {
+    async getAllUsers(req, res, next) {
+        try {
+            const queryParams = this._buildCriteria(req.query);
             const handler = new user_handler_1.UserHandler();
-            let { password, userName } = req.body;
-            const user = yield handler.login({ userName, password });
-            let isMatch = yield bcrypt_1.default.compare(password, user.password);
-            if (!isMatch)
-                res.json("Invalid credentials");
-            const token = yield jsonwebtoken_1.default.sign({ user }, process.env.SECRET_KEY, { expiresIn: "1h" });
-            res.json({ auth: true, token, user });
-        });
+            const dishes = await handler.getAllUsers(queryParams);
+            res.json(dishes);
+        }
+        catch (err) {
+            res.status(400).send(err);
+        }
     }
-    signUp(req, res, next) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const handler = new user_handler_1.UserHandler();
-                let { password, userName, email } = req.body;
-                if (password.length < 3)
-                    res.json("Password must be at least 4 characters");
-                password = yield bcrypt_1.default.hash(password, 10);
-                const user = yield handler.addUser({ userName, password, email });
-                res.json(user);
-            }
-            catch (err) {
-                res.status(400).send(err);
-            }
-        });
+    async login(req, res, next) {
+        const handler = new user_handler_1.UserHandler();
+        let { password, userName } = req.body;
+        const user = await handler.login({ userName, password });
+        let isMatch = await bcrypt_1.default.compare(password, user.password);
+        if (!isMatch)
+            res.json("Invalid credentials");
+        const token = await jsonwebtoken_1.default.sign({ user }, process.env.SECRET_KEY, { expiresIn: "1h" });
+        res.json({ auth: true, token, user });
     }
-    updateUser(req, res, next) {
-        return __awaiter(this, void 0, void 0, function* () {
-            // try {
-            //   const handler = new UserHandler();
-            //   const dishId = req.params.id;
-            //   const dishData = req.body.dishData;
-            //   const updatedDish = await handler.updateDish(dishId, dishData);
-            //   res.json(updatedDish);
-            // } catch (err) {
-            //   res.status(400).send(err);
-            // }
-        });
+    async signUp(req, res, next) {
+        try {
+            const handler = new user_handler_1.UserHandler();
+            let { password, userName, email } = req.body;
+            if (password.length < 3)
+                res.json("Password must be at least 4 characters");
+            password = await bcrypt_1.default.hash(password, 10);
+            const user = await handler.addUser({ userName, password, email });
+            res.json(user);
+        }
+        catch (err) {
+            res.status(400).send(err);
+        }
     }
-    filterSchools(req, res, next) {
-        return __awaiter(this, void 0, void 0, function* () { });
+    async updateUser(req, res, next) {
+        // try {
+        //   const handler = new UserHandler();
+        //   const dishId = req.params.id;
+        //   const dishData = req.body.dishData;
+        //   const updatedDish = await handler.updateDish(dishId, dishData);
+        //   res.json(updatedDish);
+        // } catch (err) {
+        //   res.status(400).send(err);
+        // }
     }
-    getUserById(req, res, next) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const handler = new user_handler_1.UserHandler();
-                const dishId = req.params.id;
-                console.log(dishId);
-                const dish = yield handler.getDishById(dishId);
-                res.json(dish);
-            }
-            catch (err) {
-                res.status(400).send(err);
-            }
-        });
+    async filterSchools(req, res, next) { }
+    async getUserById(req, res, next) {
+        try {
+            const handler = new user_handler_1.UserHandler();
+            const dishId = req.params.id;
+            console.log(dishId);
+            const dish = await handler.getDishById(dishId);
+            res.json(dish);
+        }
+        catch (err) {
+            res.status(400).send(err);
+        }
     }
-    deleteUser(req, res, next) {
-        return __awaiter(this, void 0, void 0, function* () {
-            // try {
-            //   const handler = new UserHandler();
-            //   const dishId = req.params.id;
-            //   const deleted = await handler.deleteDish(dishId);
-            //   res.json(deleted);
-            // } catch (err: any) {
-            //   res.status(400).send(err);
-            // }
-        });
+    async deleteUser(req, res, next) {
+        // try {
+        //   const handler = new UserHandler();
+        //   const dishId = req.params.id;
+        //   const deleted = await handler.deleteDish(dishId);
+        //   res.json(deleted);
+        // } catch (err: any) {
+        //   res.status(400).send(err);
+        // }
     }
-    registerUser(req, res, next) {
-        return __awaiter(this, void 0, void 0, function* () { });
-    }
+    async registerUser(req, res, next) { }
 }
 exports.UserController = UserController;
+//# sourceMappingURL=user.controller.js.map

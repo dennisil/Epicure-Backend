@@ -50,3 +50,4 @@
 //   public async resetpassword(req: any, res: any, next: any) {
 //   }
 // }
+//# sourceMappingURL=auth.controller.js.map

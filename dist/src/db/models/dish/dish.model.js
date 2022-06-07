@@ -51,3 +51,4 @@ dishSchema.set("toJSON", {
     },
 });
 exports.DishModel = (0, mongoose_1.model)("dish", dishSchema);
+//# sourceMappingURL=dish.model.js.map

@@ -10,3 +10,4 @@ class ErrorMsgs extends Error {
     }
 }
 exports.ErrorMsgs = ErrorMsgs;
+//# sourceMappingURL=ErrorMsgs.js.map

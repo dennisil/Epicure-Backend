@@ -16,3 +16,4 @@ exports.chefs = [
         tags: [],
     },
 ];
+//# sourceMappingURL=chefs.js.map

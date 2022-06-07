@@ -21,3 +21,4 @@ class ApiRoutes {
     }
 }
 exports.default = ApiRoutes;
+//# sourceMappingURL=routes.js.map

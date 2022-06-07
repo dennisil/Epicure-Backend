@@ -30,3 +30,4 @@ restaurantSchema.set("toJSON", {
     },
 });
 exports.RestaurantModel = (0, mongoose_1.model)("restaurant", restaurantSchema);
+//# sourceMappingURL=restaurant.model.js.map

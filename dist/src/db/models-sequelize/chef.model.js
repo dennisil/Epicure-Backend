@@ -18,3 +18,4 @@ exports.Chef = sequelize_init_1.sequelize.define("chef", {
         type: sequelize_1.DataTypes.ARRAY,
     },
 });
+//# sourceMappingURL=chef.model.js.map

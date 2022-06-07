@@ -42,3 +42,4 @@ userSchema.set("toJSON", {
     },
 });
 exports.UserModel = (0, mongoose_1.model)("user", userSchema);
+//# sourceMappingURL=user.model.js.map

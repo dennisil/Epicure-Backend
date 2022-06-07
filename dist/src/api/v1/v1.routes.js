@@ -22,3 +22,4 @@ class V1Routes {
     }
 }
 exports.default = V1Routes;
+//# sourceMappingURL=v1.routes.js.map
