@@ -1,11 +1,11 @@
 import JWT from "jsonwebtoken";
-
+require("dotenv").config();
 export class Authenticator {
   public static authUser(req: any, res: any, next: any) {
     const token = req.headers["x-access-token"];
     if (!token) res.send("No Token Provided");
     else {
-      JWT.verify(token, "secret", (err: any, decoded: any) => {
+      JWT.verify(token, process.env.SECRET_KEY!, (err: any, decoded: any) => {
         if (err) {
           res
             .status(403)

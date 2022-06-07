@@ -32,12 +32,14 @@ export class RestaurantDAL extends AbsDAL {
    */
   public async read(docId: any): Promise<any> {
     try {
-      console.log("docId", docId);
-      // const id = new ObjectId(docId);
-      const restaurant = await db.restaurant.findOne({
-        include: db.dish,
-        where: { _id: docId },
+      const id = new ObjectId(docId);
+      const restaurant = await RestaurantModel.findById(id).populate({
+        path: "dishes",
       });
+      // const restaurant = await db.restaurant.findOne({
+      //   include: db.dish,
+      //   where: { _id: docId },
+      // });
       console.log("restaurant", restaurant);
       return restaurant;
     } catch (error: any) {
@@ -51,14 +53,15 @@ export class RestaurantDAL extends AbsDAL {
   }
   public async query(queryParams: any): Promise<any> {
     try {
-      let { txtCriteria, limit,offset } = queryParams || "";
+      // let { txtCriteria, limit,offset } = queryParams || "";
       // if (!txtCriteria.length) txtCriteria = ""
-      console.log("queryParams", queryParams);
-      let doc: any = await db.restaurant.findAll({
-        where: txtCriteria,
-        offset,
-        limit,
-      });
+      // console.log("queryParams", queryParams);
+      // let doc: any = await db.restaurant.findAll({
+      //   where: txtCriteria,
+      //   offset,
+      //   limit,
+      // });
+      let doc: any = await super.query(queryParams);
       //   console.log("Inside Dal DOC:", doc);
       return doc;
     } catch (error: any) {
@@ -72,7 +75,8 @@ export class RestaurantDAL extends AbsDAL {
   }
   public async create(res: any): Promise<any> {
     try {
-      let doc: any = await db.restaurant.create(res);
+      // let doc: any = await db.restaurant.create(res);
+      let doc: any = await super.create(res);
       //   console.log("Inside Dal DOC:", doc);
       return doc;
     } catch (error: any) {
@@ -87,7 +91,8 @@ export class RestaurantDAL extends AbsDAL {
   public async delete(id: any): Promise<any> {
     try {
       console.log("id", id);
-      let doc: any = await db.restaurant.destroy({ where: { _id: id } });
+      // let doc: any = await db.restaurant.destroy({ where: { _id: id } });
+      let doc: any = await super.delete(id);
       //   console.log("Inside Dal DOC:", doc);
       return doc;
     } catch (error: any) {
@@ -102,9 +107,10 @@ export class RestaurantDAL extends AbsDAL {
 
   public async update(rawData: any) {
     console.log("rawData", rawData);
-    const doc: any = await db.restaurant.update(rawData, {
-      where: { _id: rawData._id },
-    });
+    // const doc: any = await db.restaurant.update(rawData, {
+    //   where: { _id: rawData._id },
+    // });
+    const doc: any = await super.update(rawData);
     return doc;
   }
 

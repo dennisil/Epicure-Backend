@@ -31,7 +31,9 @@ export class UserDAL extends AbsDAL {
    */
   public async read(docId: string): Promise<any> {
     try {
-      let doc: any = await db.user.findOne({ where: { _id: docId } });
+      // let doc: any = await db.user.findOne({ where: { _id: docId } });
+      const id = new ObjectId(docId);
+      let doc: any = await super.read(id);
       return doc;
     } catch (error: any) {
       throw new ErrorMsgs(
@@ -72,6 +74,7 @@ export class UserDAL extends AbsDAL {
 
   public async create(user: any): Promise<any> {
     try {
+      // let doc: any = await super.create(user);
       let doc: any = await super.create(user);
       console.log("user", doc);
       return doc;

@@ -64,7 +64,7 @@ export class UserController extends AbsController {
     const user = await handler.login({ userName, password });
     let isMatch = await bcrypt.compare(password, user!.password);
     if (!isMatch) res.json("Invalid credentials");
-    const token = await JWT.sign({ user }, "secret", { expiresIn: "1h" });
+    const token = await JWT.sign({ user }, process.env.SECRET_KEY!, { expiresIn: "1h" });
     res.json({ auth: true, token, user });
   }
 

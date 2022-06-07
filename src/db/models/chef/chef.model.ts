@@ -19,7 +19,7 @@ export interface IChef {
 
 const chefSchema = new Schema(
   {
-    chefRestaurants: {
+    restaurants: {
       type: [{ type: Schema.Types.ObjectId, ref: "restaurant" }],
       required: true,
     },

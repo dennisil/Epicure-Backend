@@ -33,10 +33,16 @@ export class ChefDAL extends AbsDAL {
    */
   public async read(docId: any): Promise<any> {
     try {
-      let doc: any = await db.chef.findOne({
-        include: db.restaurant,
-        where: { _id: docId },        
+      // let doc: any = await db.chef.findOne({
+      //   include: db.restaurant,
+      //   where: { _id: docId },
+      // });
+      const id = new ObjectId(docId);
+      let doc: any = await ChefModel.findById(id).populate({
+        path: "restaurants",
       });
+      console.log(doc);
+      
       return doc;
     } catch (error: any) {
       throw new ErrorMsgs(
@@ -49,8 +55,8 @@ export class ChefDAL extends AbsDAL {
   }
   public async query(queryParams: any): Promise<any> {
     try {
-      
-      let doc: any = await db.chef.findAll(queryParams);
+      // let doc: any = await db.chef.findAll(queryParams);
+      let doc: any = await super.query();
       //   console.log("Inside Dal DOC:", doc);
       return doc;
     } catch (error: any) {
@@ -64,7 +70,8 @@ export class ChefDAL extends AbsDAL {
   }
   public async create(res: any): Promise<any> {
     try {
-      let doc: any = await db.chef.create(res);
+      // let doc: any = await db.chef.create(res);
+      let doc: any = await super.create(res);
       //   console.log("Inside Dal DOC:", doc);
       return doc;
     } catch (error: any) {
@@ -78,7 +85,8 @@ export class ChefDAL extends AbsDAL {
   }
   public async delete(id: any): Promise<any> {
     try {
-      let doc: any = await db.chef.destroy({ where: { _id: id } });
+      // let doc: any = await db.chef.destroy({ where: { _id: id } });
+      let doc: any = await super.delete(id);
       //   console.log("Inside Dal DOC:", doc);
       return doc;
     } catch (error: any) {
@@ -92,9 +100,10 @@ export class ChefDAL extends AbsDAL {
   }
 
   public async update(rawData: any) {
-    const doc: any = await db.chef.update(rawData, {
-      where: { _id: rawData._id },
-    });
+    // const doc: any = await db.chef.update(rawData, {
+    //   where: { _id: rawData._id },
+    // });
+    const doc: any = await super.update(rawData);
     return doc;
   }
 

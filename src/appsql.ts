@@ -10,9 +10,9 @@ import { users } from "../seeders/users";
 import { chefs } from "../seeders/chefs";
 // import config from "config";
 // import expressValidator from "express-validator";
-let testres:any = fs.readFileSync("./restaurant.json");
+// let testres:any = fs.readFileSync("./restaurant.json");
 // console.log("testres", JSON.parse(testres));
-testres = JSON.parse(testres)
+// testres = JSON.parse(testres)
 class Appsql {
   public app: express.Application;
   public port: number;

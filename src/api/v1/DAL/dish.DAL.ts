@@ -33,7 +33,9 @@ export class DishDAL extends AbsDAL {
    */
   public async read(docId: string): Promise<any> {
     try {
-      let doc: any = await db.dish.findOne({ where: { _id: docId } });
+      // let doc: any = await db.dish.findOne({ where: { _id: docId } });
+      const id = new ObjectId(docId);
+      let doc: any = await super.read(id);
       return doc;
     } catch (error: any) {
       throw new ErrorMsgs(
@@ -46,7 +48,8 @@ export class DishDAL extends AbsDAL {
   }
   public async query(queryParams: any): Promise<any> {
     try {
-      let doc: any = await db.dish.findAll(queryParams);
+      // let doc: any = await db.dish.findAll(queryParams);
+      let doc: any = await super.query(queryParams);
       return doc;
     } catch (error: any) {
       throw new ErrorMsgs(
@@ -59,9 +62,8 @@ export class DishDAL extends AbsDAL {
   }
   public async delete(id: any): Promise<any> {
     try {
-      console.log(id);
-
-      let doc: any = await db.dish.destroy({ where: { _id: id } });
+      // let doc: any = await db.dish.destroy({ where: { _id: id } });
+      let doc: any = await super.delete(id);
       //   console.log("Inside Dal DOC:", doc);
       return doc;
     } catch (error: any) {
@@ -77,7 +79,8 @@ export class DishDAL extends AbsDAL {
   public async create(dish: any): Promise<any> {
     try {
       //   if (dish.resId) dish.resId = new ObjectId(dish.resId);
-      let doc: any = await db.dish.create(dish);
+      // let doc: any = await db.dish.create(dish);
+      let doc: any = await super.create(dish);
       return doc;
     } catch (error: any) {
       throw new ErrorMsgs(
@@ -92,9 +95,10 @@ export class DishDAL extends AbsDAL {
   public async update(rawData: any) {
     // const filter = { _id: rawData._id };
     console.log("rawData", rawData);
-    const doc: any = await db.dish.update(rawData, {
-      where: { _id: rawData._id },
-    });
+    // const doc: any = await db.dish.update(rawData, {
+    //   where: { _id: rawData._id },
+    // });
+    const doc: any = await super.update(rawData);
     return doc;
   }
 
