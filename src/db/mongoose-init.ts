@@ -1,8 +1,11 @@
 import mongoose from "mongoose";
 import { v4 as UUIDV4 } from "uuid";
+require("dotenv").config();
+const DB_PASSWORD = process.env.MONGO_PASS;
+const DB_USER = process.env.MONGO_USER;
+const DB_DATABASE = process.env.MONGO_DB;
 
-const dbURI =
-  "mongodb+srv://dennis:12345@dennis-epicure.vr0ae.mongodb.net/epicure?retryWrites=true&w=majority";
+const dbURI = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_DATABASE}.vr0ae.mongodb.net/epicure?retryWrites=true&w=majority`;
 
 mongoose
   .connect(dbURI)

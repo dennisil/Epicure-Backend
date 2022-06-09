@@ -62,6 +62,8 @@ export class ResController extends AbsController {
       const handler = new RestaurantHandler();
       const resId = req.params.id;
       const restaurant = await handler.getRestaurantById(resId);
+      console.log(restaurant);
+      
       res.json(restaurant);
     } catch (err) {
       res.status(400).send(err);
